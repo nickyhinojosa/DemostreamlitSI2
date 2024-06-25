@@ -22,5 +22,26 @@ st.write(top_ventas)
 ventas_df['Fecha'] = pd.to_datetime(ventas_df['Fecha']) # -> REALIZA UNA CONVERSION
 ventas_df['Año'] = ventas_df['Fecha'].dt.year
 ventas_df['Mes'] = ventas_df['Fecha'].dt.month
-st.write(ventas_df)
 #crear un formato de numero en texto
+ventas_df['Mes_texto'] = ventas_df['Mes'].replace({1:'Enero', 2:'Febrero', 3:'Marzo', 4:'Abril', 5:'Mayo', 6:'Junio', 7:'Julio', 8:'Agosto', 9:'Septiembre', 10:'Octubre', 11:'Noviembre', 12:'Diciembre'})
+st.write(ventas_df)
+#LISTA DE productos unicos
+productos= ventas_df['Producto'].unique()
+st.write(productos)
+#lsita de secciones unicas
+secciones= ventas_df['Seccion'].unique()
+st.write(secciones)
+#lista de marca_ID unicas
+marca_id= ventas_df['Marca_ID'].unique()
+st.write(marca_id)
+#rango de cantidad
+rango_cantidad= ventas_df['Cantidad'].max()-ventas_df['Cantidad'].min()
+rango_fechas= ventas_df['Fecha'].max()-ventas_df['Fecha'].min()
+#total de ventas
+total_ventas_mes = ventas_df.groupby('Mes_texto')['Cantidad'].sum()
+st.write(total_ventas_mes)
+#total ventas productos por mes 
+total_ventas_producto_mes = ventas_df.groupby(
+    ['Producto', 'Mes_texto'])['Cantidad'].sum()
+st.write(total_ventas_producto_mes)
+
