@@ -23,3 +23,4 @@ ventas_df['Fecha'] = pd.to_datetime(ventas_df['Fecha']) # -> REALIZA UNA CONVERS
 ventas_df['Año'] = ventas_df['Fecha'].dt.year
 ventas_df['Mes'] = ventas_df['Fecha'].dt.month
 st.write(ventas_df)
+#crear un formato de numero en texto
